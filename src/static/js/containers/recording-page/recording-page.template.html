@@ -1,0 +1,85 @@
+<div class="recording-page">
+
+    <div class="snapshot-container">
+
+        <img ng-if="$ctrl.recordingPage.isSnapshotShowing" ng-src="/image" style="width: 100px; height: 100px;"> 
+
+        <md-button ng-if="!$ctrl.recordingPage.isSnapshotShowing" class="md-primary" ng-click="$ctrl.onSnapshotShowClick()">
+            Show snapshot
+        </md-button>
+
+        <md-button ng-if="$ctrl.recordingPage.isSnapshotShowing" class="md-primary" ng-click="$ctrl.onSnapshotHideClick()">
+            Hide snapshot
+        </md-button>
+
+    </div>
+
+    <div class="streaming-container">
+
+        <video-stream ng-if="$ctrl.recordingPage.isStreamShowing" url="'/video_feed'"></video-stream>
+
+        <md-button ng-if="!$ctrl.recordingPage.isStreamShowing" class="md-primary"
+            ng-click="$ctrl.onStreamShowClick()">
+            Show stream
+        </md-button>
+
+        <md-button ng-if="$ctrl.recordingPage.isStreamShowing" class="md-primary"
+            ng-click="$ctrl.onStreamHideClick()">
+            Hide stream
+        </md-button>
+
+    </div>
+
+    <div class="settings">
+        <div class="settings-item">
+            <label>Shutter speed</label>
+            <input ng-model="$ctrl.recordingPage.cameraSettings.shutterSpeed" type="number" class="shutter-speed">
+        </div>
+        <div class="settings-item">
+            <label>FPS</label>
+            <input ng-model="$ctrl.recordingPage.cameraSettings.frameRate" type="number" class="frame-rate">
+        </div>
+        <div class="settings-item">
+            <label>Iso</label>
+            <input ng-model="$ctrl.recordingPage.cameraSettings.iso" type="number" class="iso">
+        </div>
+        <div class="settings-item">
+            <label>Height</label>
+            <input ng-model="$ctrl.recordingPage.cameraSettings.height" type="number" class="height">
+        </div>
+        <div class="settings-item">
+            <label>Width</label>
+            <input ng-model="$ctrl.recordingPage.cameraSettings.width" type="number" class="width">
+        </div>
+        <md-button
+            ng-click="$ctrl.onSettingsSaveClick()"
+            class="md-primary">
+            Save
+        </md-button>
+    </div>
+
+    <div class="recording-fab-buttons">
+
+        <md-button ng-show="$ctrl.recordingPage.isUsbMounted && !$ctrl.recordingPage.isRecording" class="md-fab recording-fab-button"
+            ng-click="$ctrl.onUnmountClick()">
+            <md-icon md-svg-src="assets/icons/eject.svg"></md-icon>
+        </md-button>
+
+        <md-button ng-show="$ctrl.recordingPage.isUsbMounted && !$ctrl.recordingPage.isRecording" class="md-fab recording-fab-button"
+            ng-click="$ctrl.onRecordClick()">
+            <md-icon md-svg-src="assets/icons/record.svg"></md-icon>
+        </md-button>
+
+        <md-button ng-show="$ctrl.recordingPage.isUsbMounted && $ctrl.recordingPage.isRecording" class="md-fab recording-fab-button"
+            ng-click="$ctrl.onStopClick()">
+            <md-icon md-svg-src="assets/icons/stop.svg"></md-icon>
+        </md-button>
+
+        <md-button ng-show="!$ctrl.recordingPage.isUsbMounted && !$ctrl.recordingPage.isRecording" class="md-fab recording-fab-button"
+            ng-click="$ctrl.onMountClick()">
+            <md-icon md-svg-src="assets/icons/refresh.svg"></md-icon>
+        </md-button>
+
+    </div>
+
+</div>

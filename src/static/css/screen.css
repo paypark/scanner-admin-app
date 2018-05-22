@@ -1,0 +1,148 @@
+html,
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+}
+
+.snapshot,
+.video-stream {
+  width: 100%;
+}
+
+.buttons {
+    padding: 8px;
+    margin-bottom: 16px;
+}
+
+.settings {
+    margin: 8px;
+    padding: 16px 8px 8px 8px;
+    border: 1px dotted rgba(0, 0, 0, 0.25);
+    border-radius: 2px;
+}
+
+.settings-item {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 8px;
+}
+
+.settings-item > * {
+    flex: 1;
+}
+
+.settings-item > label {
+}
+
+.settings-item > input {
+    height: 24px;
+    line-height: 24px;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    border-radius: 2px;
+    outline: 0;
+    padding: 0 8px;
+}
+
+.settings-button {
+    margin-top: 8px;
+}
+
+.sick-button {
+    height: 32px;
+    line-height: 30px;
+
+    padding: 0 24px;
+    border: 0;
+    outline: 0;
+
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 4px;
+
+    color: #3f51b5;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.sick-button-raised {
+    background-color: #3f51b5;
+    color: rgb(255, 255, 255);
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+}
+
+.sick-button:hover {
+    cursor: pointer;
+    background-color: rgba(63, 81, 181, 0.15); /* aka #3f51b5 */
+}
+
+.sick-button-raised:hover {
+    background-color: inherit; /* aka #3f51b5 */
+}
+
+.sick-button-raised:active {
+    box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
+}
+
+.sick-button:focus {
+    outline: 0;
+}
+
+.sick-button-full-width {
+    width: 100%;
+}
+
+.fab-button-container {
+    position: fixed;
+    height: 56px;
+    width: 56px;
+    z-index: 1000;
+}
+
+.fab-button {
+    background-color: #ff4081;
+    border: 0;
+    height: 56px;
+    width: 56px;
+    border-radius: 999px;
+    box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
+    outline: 0;
+}
+
+.recording-container {
+    right: 16px;
+    bottom: 24px;
+}
+
+.recording-button {}
+
+.unmount-container {
+    right: 16px;
+    bottom: 96px;
+}
+
+.unmount-button {}
+
+
+.status-container {
+    position: fixed;
+    height: 56px;
+    left: 16px;
+    bottom: 24px;
+    z-index: 999;
+}
+
+.tadaa {
+    height: 56px;
+    width: 56px;
+}
+
+.status-icon {
+    fill: green;
+}
+
+.inactive-icon > svg {
+    fill: red;
+}
+
+.hidden {
+    display: none;
+}

@@ -1,0 +1,50 @@
+html,
+body {
+    margin: 0;
+}
+
+
+/* recoding page container */
+.recording-page {}
+
+.recording-fab-buttons {
+    position: fixed;
+    right: 8px;
+    bottom: 16px;
+    
+    display: flex;
+    flex-direction: column;
+}
+
+.recording-fab-button {
+    margin-top: 16px;
+}
+
+.settings {
+    margin: 8px;
+    padding: 16px 8px 8px 8px;
+    border: 1px dotted rgba(0, 0, 0, 0.25);
+    border-radius: 2px;
+}
+
+.settings-item {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 8px;
+}
+
+.settings-item > * {
+    flex: 1;
+}
+
+.settings-item > label {
+}
+
+.settings-item > input {
+    height: 24px;
+    line-height: 24px;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    border-radius: 2px;
+    outline: 0;
+    padding: 0 8px;
+}

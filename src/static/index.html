@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <title>Scanner Calibration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="libs/angular-material.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+  </head>
+  <body ng-app="app">
+    <ui-view></ui-view>
+
+    <!-- dependencies -->
+    <script src="libs/angular.js"></script>
+    <script src="libs/angular-ui-router.js"></script>
+    <script src="libs/angular-animate.js"></script>
+    <script src="libs/angular-aria.js"></script>
+    <script src="libs/angular-material.js"></script>
+    
+    <!-- angular root module -->
+    <script src="js/main.module.js"></script>
+
+    <!-- redux -->
+    <script src="js/redux/Store.js"></script>
+    <script src="js/redux/RootReducer.js"></script>
+
+    <!-- services -->
+    <script src="js/services/NetworkService.js"></script>
+    
+    <!-- components -->
+    <script src="js/components/video-stream/video-stream.component.js"></script>
+
+    <!-- containers -->
+    <script src="js/containers/recording-page/recording-page.actions.js"></script>
+    <script src="js/containers/recording-page/recording-page.reducer.js"></script>
+    <script src="js/containers/recording-page/recording-page.component.js"></script>
+
+  </body>
+</html>
