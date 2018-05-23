@@ -47,7 +47,7 @@ def pythonReload():
 @app.route('/hello')
 def hello():
     obj = {}
-    obj['message'] = "hola chicka"
+    obj['message'] = "hola dostovel"
     return jsonify(obj)
 
 @app.route('/increase')
