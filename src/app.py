@@ -38,6 +38,12 @@ def send_static_file(filename):
 def index():
     return send_from_directory(app.static_folder, 'index.html')
 
+@app.route('/hello')
+def hello():
+    obj = {}
+    obj['message'] = "salut"
+    return jsonify(obj)
+
 @app.route('/increase')
 def increase():
     obj = {}
