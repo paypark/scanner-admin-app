@@ -137,8 +137,8 @@ def status():
 
 def gen(camera):
     """Video streaming generator function"""
-    referenceFrame = None
     while True:
+        global referenceFrame
         frame = camera.get_frame()
 
         data = np.fromstring(frame, dtype=np.uint8)
