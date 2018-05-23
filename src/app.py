@@ -10,6 +10,8 @@ from flask import Flask, render_template, Response, jsonify, send_from_directory
 import random
 import io
 import time
+import numpy as np
+import cv2
 
 from EnvironmentService import EnvironmentService
 from USBStorageService import USBStorageService
@@ -118,12 +120,47 @@ def status():
     )
     return json.dumps(body, 200, { 'Content-Type': 'applicaton/json' })
 
+REFERENCE_FRAME_AVERAGE_FRAME_COUNT = 50
+REFERENCE_FRAME_UPDATE_INTERVAL_MS = 500
+DRAW_DETECTED_REGIONS = True
+MIN_HEIGHT = 60
+MIN_WIDTH = 100
+
+referenceFrame = None
+referenceFrameDeque = None
+referenceFrameLastUpdate = TimeService.getTimestamp()
+
+lastIdentifiedFrame = None
+secondLastIdentifiedFrame = None
+thirdLastIdentifiedFrame = None
+
 def gen(camera):
     """Video streaming generator function"""
     while True:
         frame = camera.get_frame()
+
+        data = np.fromstring(frame, dtype=np.uint8)
+        image = cv2.imdecode(data, 1)
+
+        if referenceFrame is None:
+            _, _, referenceFrame = Detector.generateReferenceImageItem(image)
+            referenceFrameDeque = Detector.generateReferenceImageDeque(referenceFrame, REFERENCE_FRAME_AVERAGE_FRAME_COUNT)
+            referenceFrameLastUpdate = TimeService.getTimestamp()
+
+        if TimeService.getTimestamp() > referenceFrameLastUpdate + REFERENCE_FRAME_UPDATE_INTERVAL_MS:
+            _, _, referenceFrameItem = Detector.generateReferenceImageItem(image)
+            referenceFrameDeque.append(referenceFrameItem)
+            referenceFrame = Detector.generateReferenceImage(referenceFrameDeque)
+            referenceFrameLastUpdate = TimeService.getTimestamp()
+
+        detectedRegionRectangles, processedImage, deltaImage, thresholdImage = Detector.detect(MIN_HEIGHT, MIN_WIDTH, referenceFrame, image)
+
+        if DRAW_DETECTED_REGIONS and len(detectedRegionRectangles):
+            for rectangle in detectedRegionRectangles:
+                ImageManipulator.drawRectangleMutable(processedImage, rectangle)
+
         yield (b'--frame\r\n'
-               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+            b'Content-Type: image/jpeg\r\n\r\n' + cv2.imencode(".jpeg", processedImage)[1].tostring() + b'\r\n')
 
 
 @app.route('/video_feed')
