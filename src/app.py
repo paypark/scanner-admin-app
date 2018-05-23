@@ -45,7 +45,7 @@ def index():
 @app.route('/python-reload')
 def pythonReload():
     processId = os.getpid()
-    CommandLineService.run_command('git pull && kill -9 {}'.format(processId))
+    CommandLineService.run_command('git pull && pip3 install -r requirements.txt && kill -9 {}'.format(processId))
 
 @app.route('/hello')
 def hello():
