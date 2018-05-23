@@ -34,6 +34,21 @@ captureSettings.setIso(1)
 captureSettings.setHeight(480)
 captureSettings.setWidth(640)
 
+### detection
+REFERENCE_FRAME_AVERAGE_FRAME_COUNT = 50
+REFERENCE_FRAME_UPDATE_INTERVAL_MS = 500
+DRAW_DETECTED_REGIONS = True
+MIN_HEIGHT = 60
+MIN_WIDTH = 100
+
+referenceFrame = None
+referenceFrameDeque = None
+referenceFrameLastUpdate = TimeService.getTimestamp()
+
+lastIdentifiedFrame = None
+secondLastIdentifiedFrame = None
+thirdLastIdentifiedFrame = None
+
 app = Flask(__name__, static_folder='static')
 
 @app.route('/<path:filename>')
@@ -119,20 +134,6 @@ def status():
         isUsbConnected=USBStorageService.isUSBStorageMounted()
     )
     return json.dumps(body, 200, { 'Content-Type': 'applicaton/json' })
-
-REFERENCE_FRAME_AVERAGE_FRAME_COUNT = 50
-REFERENCE_FRAME_UPDATE_INTERVAL_MS = 500
-DRAW_DETECTED_REGIONS = True
-MIN_HEIGHT = 60
-MIN_WIDTH = 100
-
-referenceFrame = None
-referenceFrameDeque = None
-referenceFrameLastUpdate = TimeService.getTimestamp()
-
-lastIdentifiedFrame = None
-secondLastIdentifiedFrame = None
-thirdLastIdentifiedFrame = None
 
 def gen(camera):
     """Video streaming generator function"""
