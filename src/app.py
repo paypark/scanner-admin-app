@@ -14,6 +14,9 @@ import time
 from EnvironmentService import EnvironmentService
 from USBStorageService import USBStorageService
 from CommandLineService import CommandLineService
+from Detector import Detector
+from ImageManipulator import ImageManipulator
+from TimeService import TimeService
 
 # import camera driver
 if os.environ.get('CAMERA'):
