@@ -137,6 +137,7 @@ def status():
 
 def gen(camera):
     """Video streaming generator function"""
+    referenceFrame = None
     while True:
         frame = camera.get_frame()
 
