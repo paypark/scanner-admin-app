@@ -13,6 +13,7 @@ import time
 
 from EnvironmentService import EnvironmentService
 from USBStorageService import USBStorageService
+from CommandLineService import CommandLineService
 
 # import camera driver
 if os.environ.get('CAMERA'):
@@ -38,10 +39,15 @@ def send_static_file(filename):
 def index():
     return send_from_directory(app.static_folder, 'index.html')
 
+@app.route('/python-reload')
+def pythonReload():
+    processId = os.getpid()
+    CommandLineService.run_command('git pull && kill -9 {}'.format(processId))
+
 @app.route('/hello')
 def hello():
     obj = {}
-    obj['message'] = "salut"
+    obj['message'] = "hola chicka"
     return jsonify(obj)
 
 @app.route('/increase')
